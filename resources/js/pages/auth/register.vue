@@ -1,19 +1,35 @@
 <template>
   <div class="row">
     <div class="col-lg-8 m-auto">
-      <card v-if="mustVerifyEmail" :title="$t('register')">
-        <div class="alert alert-success" role="alert">
-          {{ $t('verify_email_address') }}
-        </div>
-      </card>
-      <card v-else :title="$t('register')">
+      <card title="ลงทะเบียน">
         <form @submit.prevent="register" @keydown="form.onKeydown($event)">
           <!-- Name -->
           <div class="form-group row">
-            <label class="col-md-3 col-form-label text-md-right">{{ $t('name') }}</label>
+            <label class="col-md-3 col-form-label text-md-right">first_name</label>
             <div class="col-md-7">
-              <input v-model="form.name" :class="{ 'is-invalid': form.errors.has('name') }" class="form-control" type="text" name="name">
-              <has-error :form="form" field="name" />
+              <input
+                v-model="form.first_name"
+                :class="{ 'is-invalid': form.errors.has('first_name') }"
+                class="form-control"
+                type="text"
+                name="first_name"
+              />
+              <has-error :form="form" field="first_name" />
+            </div>
+          </div>
+
+          <!-- LastName -->
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-md-right">last_name</label>
+            <div class="col-md-7">
+              <input
+                v-model="form.last_name"
+                :class="{ 'is-invalid': form.errors.has('last_name') }"
+                class="form-control"
+                type="text"
+                name="last_name"
+              />
+              <has-error :form="form" field="last_name" />
             </div>
           </div>
 
@@ -21,25 +37,58 @@
           <div class="form-group row">
             <label class="col-md-3 col-form-label text-md-right">{{ $t('email') }}</label>
             <div class="col-md-7">
-              <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" class="form-control" type="email" name="email">
+              <input
+                v-model="form.email"
+                :class="{ 'is-invalid': form.errors.has('email') }"
+                class="form-control"
+                type="email"
+                name="email"
+              />
               <has-error :form="form" field="email" />
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-md-right">Phone Number</label>
+            <div class="col-md-7">
+              <input
+                v-model="form.tel"
+                :class="{ 'is-invalid': form.errors.has('tel') }"
+                class="form-control"
+                type="tel"
+                name="tel"
+              />
+              <has-error :form="form" field="tel" />
             </div>
           </div>
 
           <!-- Password -->
           <div class="form-group row">
-            <label class="col-md-3 col-form-label text-md-right">{{ $t('password') }}</label>
+            <label class="col-md-3 col-form-label text-md-right">password</label>
             <div class="col-md-7">
-              <input v-model="form.password" :class="{ 'is-invalid': form.errors.has('password') }" class="form-control" type="password" name="password">
+              <input
+                v-model="form.password"
+                :class="{ 'is-invalid': form.errors.has('password') }"
+                class="form-control"
+                type="password"
+                name="password"
+              />
               <has-error :form="form" field="password" />
             </div>
           </div>
 
           <!-- Password Confirmation -->
           <div class="form-group row">
-            <label class="col-md-3 col-form-label text-md-right">{{ $t('confirm_password') }}</label>
+            <label class="col-md-3 col-form-label text-md-right">confirm_password</label>
             <div class="col-md-7">
-              <input v-model="form.password_confirmation" :class="{ 'is-invalid': form.errors.has('password_confirmation') }" class="form-control" type="password" name="password_confirmation">
+              <input
+                v-model="form.password_confirmation"
+                :class="{ 'is-invalid': form.errors.has('password_confirmation') }"
+                class="form-control"
+                type="password"
+                name="password_confirmation"
+              />
               <has-error :form="form" field="password_confirmation" />
             </div>
           </div>
@@ -48,7 +97,7 @@
             <div class="col-md-7 offset-md-3 d-flex">
               <!-- Submit Button -->
               <v-button :loading="form.busy">
-                {{ $t('register') }}
+                ลงทะเบียน
               </v-button>
 
               <!-- GitHub Register Button -->
@@ -72,40 +121,33 @@ export default {
     LoginWithGithub
   },
 
-  metaInfo () {
-    return { title: this.$t('register') }
+  metaInfo() {
+    return { title: 'ลงทะเบียน' }
   },
 
   data: () => ({
     form: new Form({
-      name: '',
+      first_name: '',
+      last_name: '',
+      line_user_id: 1,
       email: '',
+      tel: '',
+
       password: '',
       password_confirmation: ''
-    }),
-    mustVerifyEmail: false
+    })
   }),
+  async created() {
+    await this.initializeLiff('1654463041-BP37a3GE')
+  },
 
   methods: {
-    async register () {
+    async register() {
       // Register the user.
-      const { data } = await this.form.post('/api/register')
+      const { data, status } = await this.form.post('/api/register')
 
-      // Must verify email fist.
-      if (data.status) {
-        this.mustVerifyEmail = true
-      } else {
-        // Log in the user.
-        const { data: { token } } = await this.form.post('/api/login')
-
-        // Save the token.
-        this.$store.dispatch('auth/saveToken', { token })
-
-        // Update the user.
-        await this.$store.dispatch('auth/updateUser', { user: data })
-
-        // Redirect home.
-        this.$router.push({ name: 'home' })
+      if (status == 200) {
+        alert('ลงทะเบียนสำเร็จ')
       }
     }
   }
