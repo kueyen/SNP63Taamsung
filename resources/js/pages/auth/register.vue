@@ -1,6 +1,10 @@
 <template>
   <div class="row">
     <div class="col-lg-8 m-auto">
+      <div class="text-center">
+        <img :src="user.image_url" width="200" />
+      </div>
+
       <card title="ลงทะเบียน">
         <form @submit.prevent="register" @keydown="form.onKeydown($event)">
           <!-- Name -->
@@ -63,45 +67,12 @@
             </div>
           </div>
 
-          <!-- Password -->
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label text-md-right">password</label>
-            <div class="col-md-7">
-              <input
-                v-model="form.password"
-                :class="{ 'is-invalid': form.errors.has('password') }"
-                class="form-control"
-                type="password"
-                name="password"
-              />
-              <has-error :form="form" field="password" />
-            </div>
-          </div>
-
-          <!-- Password Confirmation -->
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label text-md-right">confirm_password</label>
-            <div class="col-md-7">
-              <input
-                v-model="form.password_confirmation"
-                :class="{ 'is-invalid': form.errors.has('password_confirmation') }"
-                class="form-control"
-                type="password"
-                name="password_confirmation"
-              />
-              <has-error :form="form" field="password_confirmation" />
-            </div>
-          </div>
-
           <div class="form-group row">
             <div class="col-md-7 offset-md-3 d-flex">
               <!-- Submit Button -->
               <v-button :loading="form.busy">
                 ลงทะเบียน
               </v-button>
-
-              <!-- GitHub Register Button -->
-              <login-with-github />
             </div>
           </div>
         </form>
@@ -112,14 +83,9 @@
 
 <script>
 import Form from 'vform'
-import LoginWithGithub from '~/components/LoginWithGithub'
-
+import axios from 'axios'
 export default {
   middleware: 'guest',
-
-  components: {
-    LoginWithGithub
-  },
 
   metaInfo() {
     return { title: 'ลงทะเบียน' }
@@ -131,14 +97,27 @@ export default {
       last_name: '',
       line_user_id: 1,
       email: '',
-      tel: '',
+      tel: ''
 
-      password: '',
-      password_confirmation: ''
+      // password: '',
+      // password_confirmation: ''
     })
   }),
+  watch: {
+    async user() {
+      const { data } = await axios.get(`/api/line/user/check/register?line_user_id=${this.user.id}`)
+
+      if (data.result.isRegistered) {
+        alert('มึงลงทะเบียนแล้ว')
+        this.closeWindow()
+      }
+
+      this.form.email = this.user.email
+      this.form.line_user_id = this.user.id
+    }
+  },
   async created() {
-    await this.initializeLiff('1654463041-BP37a3GE')
+    // await this.initializeLiff('1654463041-BP37a3GE')
   },
 
   methods: {
