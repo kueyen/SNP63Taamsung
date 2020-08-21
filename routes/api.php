@@ -36,3 +36,4 @@ Route::group(['middleware' => 'guest:api'], function () {
     Route::get('oauth/{driver}/callback', 'Auth\OAuthController@handleProviderCallback')->name('oauth.callback');
 });
 Route::get('line/user/check/register', 'Line\UserController@checkRegistered');
+Route::post('webHook', 'Line\WebhookController@index');
