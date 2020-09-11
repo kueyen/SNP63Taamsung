@@ -39,14 +39,14 @@ export default {
     async initializeLiff(myLiffId) {
       this.loadingStart()
       let _this = this
-      await this.$liff.init({ liffId: myLiffId }, async () => {
-        if (_this.$liff.isLoggedIn()) {
-          await this.getProfile()
-          _this.loadingStop()
-        } else {
-          _this.$liff.login()
-        }
-      })
+      await this.$liff.init({ liffId: myLiffId }, async () => {})
+
+      if (_this.$liff.isLoggedIn()) {
+        await this.getProfile()
+        _this.loadingStop()
+      } else {
+        _this.$liff.login()
+      }
 
       console.log('liff end')
     },

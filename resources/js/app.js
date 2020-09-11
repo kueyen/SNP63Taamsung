@@ -13,7 +13,9 @@ Vue.mixin(Mixins)
 Vue.prototype.$liff = liff
 
 Vue.config.productionTip = false
-
+const queryString = decodeURIComponent(window.location.search).replace('?liff.state=', '')
+const params = new URLSearchParams(queryString)
+Vue.prototype.$liffParams = params
 /* eslint-disable no-new */
 new Vue({
   i18n,

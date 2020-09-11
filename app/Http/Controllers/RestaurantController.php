@@ -14,7 +14,8 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        //
+        $restaurant = Restaurant::with('tables')->get();
+        return $restaurant;
     }
 
     /**
