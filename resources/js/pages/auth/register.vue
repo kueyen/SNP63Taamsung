@@ -161,7 +161,6 @@ export default {
   },
   async created() {
     await this.initializeLiff('1654579616-o707RL0n')
-    this.loadingStart()
   },
 
   methods: {

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Line;
 
 use App\Http\Controllers\Controller;
+use App\Food;
 use App\User;
+use App\Table;
+use App\Log;
 use Illuminate\Http\Request;
 
 
@@ -15,37 +18,45 @@ class WebhookController extends Controller
     public function index(Request $request)
     {
 
-        $REPLY_MSG_NEED_AUTH = ['PAYMENT' => 'ชำระค่าไฟ'];
 
-        if ($request['events']) {
-            if (sizeof($request['events']) > 0) {
-                foreach ($request['events'] as $event) {
-                    $reply_token = $event['replyToken'];
-                    $text = $event['message']['text'];
-                    $userID = $event['source']['userId'];
-                    // checkUser Register
-                    $checkRegister = $this->checkRegister($userID);
 
-                    if ($checkRegister != true) {
-                        $this->sendRegisterImage($reply_token);
-                        return false;
+        try {
+
+            if ($request['events']) {
+                if (sizeof($request['events']) > 0) {
+                    foreach ($request['events'] as $event) {
+                        $reply_token = $event['replyToken'];
+                        $text = $event['message']['text'];
+                        $userID = $event['source']['userId'];
+                        // checkUser Register
+                        $checkRegister = $this->checkRegister($userID);
+
+                        if ($checkRegister != true) {
+
+                            $this->sendRegisterImage($reply_token);
+                            return false;
+                        }
+
+
+                        // LOGIC FROM REPLY MESSAGE //
+                        if ($text == '#สั่งอาหาร') {
+                            $this->sendFoodList($reply_token, $userID);
+                        }
+
+
+                        // END LOGIC FROM REPLY MESSAGE //
+
+
                     }
-
-
-                    // LOGIC FROM REPLY MESSAGE //
-
-                    $this->sendText($reply_token, $text);
-
-
-                    // END LOGIC FROM REPLY MESSAGE //
-
-
                 }
             }
+
+
+            return 'ok';
+        } catch (\Exception $e) {
+            $this->sendText($reply_token, $e->getMessage());
         }
 
-
-        return 'ok';
 
 
         // Failed
@@ -107,57 +118,78 @@ class WebhookController extends Controller
 
         $send_result = $this->send_reply_message($post_body);
     }
-    function showPaymentList($reply_token, $user_id)
+    public function sendFoodList($reply_token, $user_id)
     {
 
+        $cards = [];
+
+        $user = User::where('line_user_id', $user_id)->first();
+        if (!$user->table_id) {
+            // return $this->sendPleaseAddHome($reply_token, 'payment');
+            $this->sendText($reply_token, 'กรุณาทำการสแกนโต๊ะก่อน https://line.me/R/nv/QRCodeReader');
+        }
+        $table = Table::find($user->table_id);
+        try {
+            $foods = Food::whereHas('category', function ($q) use ($table) {
+                $q->where('restaurant_id', $table->restaurant_id);
+            })->where('is_recommend', 1)->limit(10)->get();
+        } catch (\Exception $e) {
+            $this->sendText($reply_token, $e->getMessage());
+        }
+
+
+
+
+        foreach ($foods as $food) {
+            array_push($cards, ['img' => 'https://www.twinpalmshotelsresorts.com/wp-content/uploads/2019/09/4024-1024x683.jpg', 'title' => $food->name, 'description' => $food->description, 'url' => 'https://google.co.th', 'price' => $food->price]);
+        }
+
+
+
         $generateCard = $this->generateCard(
-            url('images/payment.png'),
-            'ชำระค่าบริการ',
-            [
-                ['title' => 'บ้านทดสอบที่ 1', 'description' => 'ยอดชำระ 1 เดือน', 'url' => 'https://liff.line.me/1654251675-OmqGK9r1'],
-                ['title' => 'บ้านทดสอบที่ 2', 'description' => 'ยอดชำระ 2 เดือน', 'url' => 'https://liff.line.me/1654251675-OmqGK9r1']
-            ]
+            $cards
         );
+
+
 
         $m = [
             [
                 "type" => "flex",
-                "altText" => "กรุณาเลือกรายการบ้านเพื่อทำการเข้าสู่หน้ารายละเอียดการชำระเงิน",
+                "altText" => "Foodlist",
                 "contents" => array(
                     'type' => 'carousel',
-                    'contents' => $generateCard
+                    'contents' => $generateCard,
 
-                )
+                ),
             ],
         ];
 
+
+
         $data = [
             'replyToken' => $reply_token,
-            'messages' =>  $m
+            'messages' => $m,
         ];
+
+
+
 
         $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
 
+
+
+
+
         $send_result = $this->send_reply_message($post_body);
+
+        Log::create([
+            'message' => 'Result: ' . $send_result . '\r\n',
+            'reply_token' => $reply_token,
+            // 'post_body' => $post_body,
+        ]);
+
+        return  $send_result;
     }
-
-    // public function message(Request $request)
-    // {
-    //     $msg = $request->message;
-
-    //     $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient('u9wuUKvatKlXDAOB0+fUhD3Js3HRJlAbbdnDPQMa4HC3HChIo4iCFgWtIqCpf41gXQAeBJUCAQSdbH6eoy/qWo2L9XUOQrUHF3reHqtbP/g4NcYdAMf3B9cE6WCuIbd3+WYP268npsG4hZrCxqrBSQdB04t89/1O/w1cDnyilFU=');
-    //     $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => 'ba775ba81e8d1d728e570df621180632']);
-
-    //     $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($msg);
-
-    //     $response = $bot->pushMessage('Ua3031c5497b51842b4441eea8debe72a', $textMessageBuilder);
-    //     if ($response->isSucceeded()) {
-    //         return  'Succeeded!';
-    //     }
-
-    //     // Failed
-    //     return $response->getHTTPStatus() . ' ' . $response->getRawBody();
-    // }
 
 
 
@@ -189,74 +221,100 @@ class WebhookController extends Controller
         return $result;
     }
 
-    function generateCard($image, $footer, $datas)
+
+
+
+    public function generateCard($datas)
     {
 
         $cards = [];
 
         foreach ($datas as $data) {
 
-            $set = array(
-                'type' => 'bubble',
-                'hero' =>
-                array(
-                    'type' => 'image',
-                    'url' => $image,
-                    'size' => 'full',
-                    'aspectRatio' => '20:13',
-                    'aspectMode' => 'cover',
-                ),
-                'body' =>
-                array(
-                    'type' => 'box',
-                    'layout' => 'vertical',
-                    'contents' =>
-                    array(
-                        0 =>
-                        array(
-                            'type' => 'text',
-                            'text' => $data['title'],
-                            'weight' => 'bold',
-                            'size' => 'xl',
-                        ),
-                        1 =>
-                        array(
-                            'type' => 'text',
-                            'text' => $data['description'],
-                            'style' => 'normal',
-                            'decoration' => 'underline',
-                        ),
-                    ),
-                ),
-                'footer' =>
-                array(
-                    'type' => 'box',
-                    'layout' => 'vertical',
-                    'spacing' => 'sm',
-                    'contents' =>
-                    array(
-                        0 =>
-                        array(
-                            'type' => 'button',
-                            'style' => 'link',
-                            'height' => 'sm',
-                            'color' => '#f37022',
-                            'action' =>
-                            array(
-                                'type' => 'uri',
-                                'label' => $footer,
-                                'uri' => $data['url'],
-                            ),
-                        ),
-                        1 =>
-                        array(
-                            'type' => 'spacer',
-                            'size' => 'sm',
-                        ),
-                    ),
-                    'flex' => 0,
-                ),
-            );
+            $set =
+                [
+                    "type" => "bubble",
+                    "hero" => [
+                        "type" => "image",
+                        "size" => "full",
+                        "aspectRatio" => "20:13",
+                        "aspectMode" => "cover",
+                        "url" => $data['img']
+                    ],
+                    "body" => [
+                        "type" => "box",
+                        "layout" => "vertical",
+                        "spacing" => "sm",
+                        "contents" => [
+                            [
+                                "type" => "text",
+                                "text" => $data['title'],
+                                "wrap" => true,
+                                "weight" => "bold",
+                                "size" => "xl"
+                            ],
+                            [
+                                "type" => "text",
+                                "text" => $data['description'],
+                                "color" => "#909497"
+                            ],
+                            [
+                                "type" => "box",
+                                "layout" => "baseline",
+                                "contents" => [
+                                    [
+                                        "type" => "text",
+                                        "text" => $data['price'],
+                                        "wrap" => true,
+                                        "weight" => "bold",
+                                        "size" => "xl",
+                                        "flex" => 0,
+                                        "color" => "#2ECC71"
+                                    ],
+                                    [
+                                        "type" => "text",
+                                        "text" => "฿",
+                                        "wrap" => true,
+                                        "weight" => "bold",
+                                        "size" => "xl",
+                                        "flex" => 0,
+                                        "color" => "#2ECC71"
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ],
+                    "footer" => [
+                        "type" => "box",
+                        "layout" => "vertical",
+                        "spacing" => "sm",
+                        "contents" => [
+                            [
+                                "type" => "button",
+                                "style" => "primary",
+                                "action" => [
+                                    "type" => "uri",
+                                    "label" => "เลือกอาหาร",
+                                    "uri" => "https://linecorp.com"
+                                ],
+                                "color" => "#fc6011"
+                            ],
+                            [
+                                "type" => "button",
+                                "action" => [
+                                    "type" => "uri",
+                                    "label" => "เพิ่มลงรายการโปรด",
+                                    "uri" => "https://linecorp.com"
+                                ]
+                            ]
+                        ]
+                    ]
+                ];
+
+
+
+
+
 
             array_push($cards, $set);
         }
