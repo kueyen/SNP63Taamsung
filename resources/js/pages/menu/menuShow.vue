@@ -17,6 +17,7 @@
         </div>
       </div>
     </div>
+    <button class="btn btn-primary py-2 w-100 mt-2">เพิ่มรายการอาหาร</button>
   </div>
 </template>
 
@@ -25,8 +26,8 @@ export default {
   computed: {
     id() {
       return this.$route.params.id
-    }
-  }
+    },
+  },
 }
 </script>
 
