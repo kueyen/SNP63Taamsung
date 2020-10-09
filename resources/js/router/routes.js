@@ -36,5 +36,16 @@ export default [
     ]
   },
 
+  {
+    path: '/menus',
+    name: 'menu.index',
+    component: page('menu/menu.vue')
+  },
+  {
+    path: '/menus/:id',
+    name: 'menu.show',
+    component: page('menu/menuShow.vue')
+  },
+
   { path: '*', component: page('errors/404.vue') }
 ]

@@ -11,6 +11,8 @@ import Mixins from './mixins'
 Vue.mixin(Mixins)
 
 Vue.prototype.$liff = liff
+import VueCarousel from 'vue-carousel'
+Vue.use(VueCarousel)
 
 Vue.config.productionTip = false
 const queryString = decodeURIComponent(window.location.search).replace('?liff.state=', '')
