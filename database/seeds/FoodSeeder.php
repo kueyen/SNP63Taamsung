@@ -15,45 +15,45 @@ class FoodSeeder extends Seeder
         Food::insert([
             //1
             [
-                'name' => 'ข้าวกระเพราไก่',
+                'name' => 'ข้าวกะเพราไก่',
                 'description' => 'ไก่',
-                'image_url' => '/images/food/t.png',
+                'image_url' => '/images/foods/t.jpg',
                 'is_recommend' => 1,
                 'price' => 40.00,
                 'discount' => 5,
                 'category_id' => 1,
             ],
             [
-                'name' => 'ข้าวกระเพราหมู',
+                'name' => 'ข้าวกะเพราหมู',
                 'description' => 'ไก่',
-                'image_url' => '/images/food/kapraomoo.png',
+                'image_url' => '/images/foods/kapraomoo.png',
                 'is_recommend' => 1,
                 'price' => 40.00,
                 'discount' => 5,
                 'category_id' => 2,
             ],
             [
-                'name' => 'ข้าวกระเพราหมูกรอบ',
+                'name' => 'ข้าวกะเพราหมูกรอบ',
                 'description' => 'หมูกรอบ',
-                'image_url' => '/images/food/kapraomookrop.png',
+                'image_url' => '/images/foods/kapraomookrop.png',
                 'is_recommend' => 1,
                 'price' => 45.00,
                 'discount' => 5,
                 'category_id' => 1,
             ],
             [
-                'name' => 'ข้าวกระเพราเนื่อ',
+                'name' => 'ข้าวกะเพราเนื้อ',
                 'description' => 'เนื้อ',
-                'image_url' => '/images/food/kapronue.png',
+                'image_url' => '/images/foods/kapronue.png',
                 'is_recommend' => 1,
                 'price' => 45.00,
                 'discount' => 5,
                 'category_id' => 1,
             ],
             [
-                'name' => 'ข้าวกระเพรากุ้ง',
+                'name' => 'ข้าวกะเพรากุ้ง',
                 'description' => 'กุ้ง',
-                'image_url' => '/images/food/kaprokung.png',
+                'image_url' => '/images/foods/kaprokung.png',
                 'is_recommend' => 1,
                 'price' => 50.00,
                 'discount' => 5,
@@ -62,7 +62,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวไก่กระเทียม',
                 'description' => 'ไก่',
-                'image_url' => '/images/food/kaikrateam.png',
+                'image_url' => '/images/foods/kaikrateam.png',
                 'is_recommend' => 0,
                 'price' => 40.00,
                 'discount' => 0,
@@ -71,7 +71,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวหมูกระเทียม',
                 'description' => 'หมู',
-                'image_url' => '/images/food/mookrateam.png',
+                'image_url' => '/images/foods/mookrateam.png',
                 'is_recommend' => 0,
                 'price' => 40.00,
                 'discount' => 0,
@@ -80,7 +80,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวหมูกรอบกระเทียม',
                 'description' => 'หมูกรอบ',
-                'image_url' => '/images/food/mookropkrateam.png',
+                'image_url' => '/images/foods/mookropkrateam.png',
                 'is_recommend' => 0,
                 'price' => 45.00,
                 'discount' => 0,
@@ -89,7 +89,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวเนื้อกระเทียม',
                 'description' => 'เนื้อ',
-                'image_url' => '/images/food/nuekrateam.png',
+                'image_url' => '/images/foods/nuekrateam.png',
                 'is_recommend' => 0,
                 'price' => 45.00,
                 'discount' => 0,
@@ -98,7 +98,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวกุ้งกระเทียม',
                 'description' => 'กุ้ง',
-                'image_url' => '/images/food/krungkrateam.png',
+                'image_url' => '/images/foods/krungkrateam.png',
                 'is_recommend' => 0,
                 'price' => 50.00,
                 'discount' => 0,
@@ -107,7 +107,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวพริกเผาไก่',
                 'description' => 'ไก่',
-                'image_url' => '/images/food/prikpaokai.png',
+                'image_url' => '/images/foods/prikpaokai.png',
                 'is_recommend' => 0,
                 'price' => 40.00,
                 'discount' => 0,
@@ -116,7 +116,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวพริกเผาหมู',
                 'description' => 'หมู',
-                'image_url' => '/images/food/prikpaomoo.png',
+                'image_url' => '/images/foods/prikpaomoo.png',
                 'is_recommend' => 0,
                 'price' => 40.00,
                 'discount' => 0,
@@ -125,7 +125,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวพริกเผาหมูกรอบ',
                 'description' => 'หมูกรอบ',
-                'image_url' => '/images/food/prikpaomookrop.png',
+                'image_url' => '/images/foods/prikpaomookrop.png',
                 'is_recommend' => 0,
                 'price' => 45.00,
                 'discount' => 0,
@@ -134,7 +134,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวพริกเผาเนื้อ',
                 'description' => 'เนื้อ',
-                'image_url' => '/images/food/prikpaonue.png',
+                'image_url' => '/images/foods/prikpaonue.png',
                 'is_recommend' => 0,
                 'price' => 45.00,
                 'discount' => 0,
@@ -143,7 +143,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวพริกเผากุ้ง',
                 'description' => 'กุ้ง',
-                'image_url' => '/images/food/prikpaokung.png',
+                'image_url' => '/images/foods/prikpaokung.png',
                 'is_recommend' => 0,
                 'price' => 50.00,
                 'discount' => 0,
@@ -152,7 +152,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวพริกแกงไก่',
                 'description' => 'ไก่',
-                'image_url' => '/images/food/prikkangkai.png',
+                'image_url' => '/images/foods/prikkangkai.png',
                 'is_recommend' => 0,
                 'price' => 40.00,
                 'discount' => 0,
@@ -161,7 +161,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวพริกแกงหมู',
                 'description' => 'หมู',
-                'image_url' => '/images/food/prikkangmoo.png',
+                'image_url' => '/images/foods/prikkangmoo.png',
                 'is_recommend' => 0,
                 'price' => 40.00,
                 'discount' => 0,
@@ -170,7 +170,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวพริกแกงหมูกรอบ',
                 'description' => 'หมูกรอบ',
-                'image_url' => '/images/food/prikkangmookrop.png',
+                'image_url' => '/images/foods/prikkangmookrop.png',
                 'is_recommend' => 0,
                 'price' => 45.00,
                 'discount' => 0,
@@ -179,7 +179,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวพริกแกงเนื้อ',
                 'description' => 'เนื้อ',
-                'image_url' => '/images/food/prikkangnue.png',
+                'image_url' => '/images/foods/prikkangnue.png',
                 'is_recommend' => 0,
                 'price' => 45.00,
                 'discount' => 0,
@@ -188,7 +188,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวพริกแกงกุ้ง',
                 'description' => 'กุ้ง',
-                'image_url' => '/images/food/prikkangkung.png',
+                'image_url' => '/images/foods/prikkangkung.png',
                 'is_recommend' => 0,
                 'price' => 50.00,
                 'discount' => 0,
@@ -197,7 +197,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวพริกสดไก่',
                 'description' => 'ไก่',
-                'image_url' => '/images/food/priksodkai.png',
+                'image_url' => '/images/foods/priksodkai.png',
                 'is_recommend' => 0,
                 'price' => 40.00,
                 'discount' => 0,
@@ -206,7 +206,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวพริกสดหมู',
                 'description' => 'หมู',
-                'image_url' => '/images/food/priksodmoo.png',
+                'image_url' => '/images/foods/priksodmoo.png',
                 'is_recommend' => 0,
                 'price' => 40.00,
                 'discount' => 0,
@@ -215,7 +215,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวพริกสดหมูกรอบ',
                 'description' => 'หมูกรอบ',
-                'image_url' => '/images/food/priksodmookrop.png',
+                'image_url' => '/images/foods/priksodmookrop.png',
                 'is_recommend' => 0,
                 'price' => 45.00,
                 'discount' => 0,
@@ -224,7 +224,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวพริกสดเนื้อ',
                 'description' => 'เนื้อ',
-                'image_url' => '/images/food/priksodnue.png',
+                'image_url' => '/images/foods/priksodnue.png',
                 'is_recommend' => 0,
                 'price' => 45.00,
                 'discount' => 0,
@@ -233,7 +233,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวพริกสดกุ้ง',
                 'description' => 'กุ้ง',
-                'image_url' => '/images/food/priksodkung.png',
+                'image_url' => '/images/foods/priksodkung.png',
                 'is_recommend' => 0,
                 'price' => 50.00,
                 'discount' => 0,
@@ -242,7 +242,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวผัดไก่',
                 'description' => 'ไก่',
-                'image_url' => '/images/food/kaopadkai.png',
+                'image_url' => '/images/foods/kaopadkai.png',
                 'is_recommend' => 0,
                 'price' => 40.00,
                 'discount' => 0,
@@ -251,7 +251,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวผัดหมู',
                 'description' => 'หมู',
-                'image_url' => '/images/food/kaopadmoo.png',
+                'image_url' => '/images/foods/kaopadmoo.png',
                 'is_recommend' => 0,
                 'price' => 40.00,
                 'discount' => 0,
@@ -260,7 +260,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวผัดหมูกรอบ',
                 'description' => 'หมูกรอบ',
-                'image_url' => '/images/food/kaopadmookrop.png',
+                'image_url' => '/images/foods/kaopadmookrop.png',
                 'is_recommend' => 0,
                 'price' => 45.00,
                 'discount' => 0,
@@ -269,7 +269,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวผัดเนื้อ',
                 'description' => 'เนื้อ',
-                'image_url' => '/images/food/kaopadnue.png',
+                'image_url' => '/images/foods/kaopadnue.png',
                 'is_recommend' => 0,
                 'price' => 45.00,
                 'discount' => 0,
@@ -278,7 +278,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวผัดกุ้ง',
                 'description' => 'กุ้ง',
-                'image_url' => '/images/food/kaopadkung.png',
+                'image_url' => '/images/foods/kaopadkung.png',
                 'is_recommend' => 0,
                 'price' => 50.00,
                 'discount' => 0,
@@ -287,7 +287,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวเขียวหวานไก่',
                 'description' => 'ไก่',
-                'image_url' => '/images/food/keowwankai.png',
+                'image_url' => '/images/foods/keowwankai.png',
                 'is_recommend' => 0,
                 'price' => 40.00,
                 'discount' => 0,
@@ -296,7 +296,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวเขียวหวานหมู',
                 'description' => 'หมู',
-                'image_url' => '/images/food/keowwanmoo.png',
+                'image_url' => '/images/foods/keowwanmoo.png',
                 'is_recommend' => 0,
                 'price' => 40.00,
                 'discount' => 0,
@@ -305,7 +305,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวเขียวหวานหมูกรอบ',
                 'description' => 'หมูกรอบ',
-                'image_url' => '/images/food/keowwanmookrop.png',
+                'image_url' => '/images/foods/keowwanmookrop.png',
                 'is_recommend' => 0,
                 'price' => 45.00,
                 'discount' => 0,
@@ -314,7 +314,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวเขียวหวานเนื้อ',
                 'description' => 'เนื้อ',
-                'image_url' => '/images/food/keowwannue.png',
+                'image_url' => '/images/foods/keowwannue.png',
                 'is_recommend' => 0,
                 'price' => 45.00,
                 'discount' => 0,
@@ -323,7 +323,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวเขียวหวานกุ้ง',
                 'description' => 'กุ้ง',
-                'image_url' => '/images/food/keowwankung.png',
+                'image_url' => '/images/foods/keowwankung.png',
                 'is_recommend' => 0,
                 'price' => 50.00,
                 'discount' => 0,
@@ -332,7 +332,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวพะแนงไก่',
                 'description' => 'ไก่',
-                'image_url' => '/images/food/panangkai.png',
+                'image_url' => '/images/foods/panangkai.png',
                 'is_recommend' => 0,
                 'price' => 40.00,
                 'discount' => 0,
@@ -341,7 +341,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวพะแนงหมู',
                 'description' => 'หมู',
-                'image_url' => '/images/food/panangmoo.png',
+                'image_url' => '/images/foods/panangmoo.png',
                 'is_recommend' => 0,
                 'price' => 40.00,
                 'discount' => 0,
@@ -350,7 +350,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวพะแนงหมูกรอบ',
                 'description' => 'หมูกรอบ',
-                'image_url' => '/images/food/panangmookrop.png',
+                'image_url' => '/images/foods/panangmookrop.png',
                 'is_recommend' => 0,
                 'price' => 45.00,
                 'discount' => 0,
@@ -359,7 +359,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวพะแนงเนื้อ',
                 'description' => 'เนื้อ',
-                'image_url' => '/images/food/panangnue.png',
+                'image_url' => '/images/foods/panangnue.png',
                 'is_recommend' => 0,
                 'price' => 45.00,
                 'discount' => 0,
@@ -368,7 +368,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวพะแนงกุ้ง',
                 'description' => 'กุ้ง',
-                'image_url' => '/images/food/panangkung.png',
+                'image_url' => '/images/foods/panangkung.png',
                 'is_recommend' => 0,
                 'price' => 50.00,
                 'discount' => 0,
@@ -377,7 +377,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวผัดขี้เมาไก่',
                 'description' => 'ไก่',
-                'image_url' => '/images/food/keemaokai.png',
+                'image_url' => '/images/foods/keemaokai.png',
                 'is_recommend' => 0,
                 'price' => 40.00,
                 'discount' => 0,
@@ -386,7 +386,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวผัดขี้เมาหมู',
                 'description' => 'หมู',
-                'image_url' => '/images/food/keemaomoo.png',
+                'image_url' => '/images/foods/keemaomoo.png',
                 'is_recommend' => 0,
                 'price' => 40.00,
                 'discount' => 0,
@@ -395,7 +395,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวผัดขี้เมาหมูกรอบ',
                 'description' => 'หมูกรอบ',
-                'image_url' => '/images/food/keemaomookrop.png',
+                'image_url' => '/images/foods/keemaomookrop.png',
                 'is_recommend' => 0,
                 'price' => 45.00,
                 'discount' => 0,
@@ -404,7 +404,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวผัดขี้เมาเนื้อ',
                 'description' => 'เนื้อ',
-                'image_url' => '/images/foodkeemaonue.png',
+                'image_url' => '/images/foodskeemaonue.png',
                 'is_recommend' => 0,
                 'price' => 45.00,
                 'discount' => 0,
@@ -413,7 +413,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวผัดขี้เมากุ้ง',
                 'description' => 'กุ้ง',
-                'image_url' => '/images/food/keemaokung.png',
+                'image_url' => '/images/foods/keemaokung.png',
                 'is_recommend' => 0,
                 'price' => 50.00,
                 'discount' => 0,
@@ -422,7 +422,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ผัดมาม่าไก่',
                 'description' => 'ไก่',
-                'image_url' => '/images/food/padmamakai.png',
+                'image_url' => '/images/foods/padmamakai.png',
                 'is_recommend' => 0,
                 'price' => 40.00,
                 'discount' => 0,
@@ -431,7 +431,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ผัดมาม่าหมู',
                 'description' => 'หมู',
-                'image_url' => '/images/food/padmamamoo.png',
+                'image_url' => '/images/foods/padmamamoo.png',
                 'is_recommend' => 0,
                 'price' => 40.00,
                 'discount' => 0,
@@ -440,7 +440,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ผัดมาม่าหมูกรอบ',
                 'description' => 'หมูกรอบ',
-                'image_url' => '/images/food/padmamamookrop.png',
+                'image_url' => '/images/foods/padmamamookrop.png',
                 'is_recommend' => 0,
                 'price' => 45.00,
                 'discount' => 0,
@@ -449,7 +449,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ผัดมาม่าเนื้อ',
                 'description' => 'เนื้อ',
-                'image_url' => '/images/food/padmamanue.png',
+                'image_url' => '/images/foods/padmamanue.png',
                 'is_recommend' => 0,
                 'price' => 45.00,
                 'discount' => 0,
@@ -458,7 +458,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ผัดมาม่ากุ้ง',
                 'description' => 'กุ้ง',
-                'image_url' => '/images/food/padmamakung.png',
+                'image_url' => '/images/foods/padmamakung.png',
                 'is_recommend' => 0,
                 'price' => 50.00,
                 'discount' => 0,
@@ -467,7 +467,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวกะหรี่ไก่',
                 'description' => 'ไก่',
-                'image_url' => '/images/food/krareekai.png',
+                'image_url' => '/images/foods/krareekai.png',
                 'is_recommend' => 0,
                 'price' => 40.00,
                 'discount' => 0,
@@ -476,7 +476,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวกะหรี่หมู',
                 'description' => 'หมู',
-                'image_url' => '/images/food/krareemoo.png',
+                'image_url' => '/images/foods/krareemoo.png',
                 'is_recommend' => 0,
                 'price' => 40.00,
                 'discount' => 0,
@@ -485,7 +485,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวกะหรี่หมูกรอบ',
                 'description' => 'หมูกรอบ',
-                'image_url' => '/images/food/krareemookrop.png',
+                'image_url' => '/images/foods/krareemookrop.png',
                 'is_recommend' => 0,
                 'price' => 45.00,
                 'discount' => 0,
@@ -494,7 +494,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวกะหรี่เนื้อ',
                 'description' => 'เนื้อ',
-                'image_url' => '/images/food/krareenue.png',
+                'image_url' => '/images/foods/krareenue.png',
                 'is_recommend' => 0,
                 'price' => 45.00,
                 'discount' => 0,
@@ -503,7 +503,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวกะหรี่กุ้ง',
                 'description' => 'กุ้ง',
-                'image_url' => '/images/food/krareekung.png',
+                'image_url' => '/images/foods/krareekung.png',
                 'is_recommend' => 0,
                 'price' => 50.00,
                 'discount' => 0,
@@ -512,7 +512,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ยำไข่ดาว',
                 'description' => 'ไข่ดาว',
-                'image_url' => '/images/food/yumkaidown.png',
+                'image_url' => '/images/foods/yumkaidown.png',
                 'is_recommend' => 0,
                 'price' => 40.00,
                 'discount' => 0,
@@ -522,7 +522,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ยำกุนเชียง',
                 'description' => 'กุนเชียง',
-                'image_url' => '/images/food/yumkuncheing.png',
+                'image_url' => '/images/foods/yumkuncheing.png',
                 'is_recommend' => 0,
                 'price' => 40.00,
                 'discount' => 0,
@@ -531,7 +531,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ยำหมูมะนาว',
                 'description' => 'หมู',
-                'image_url' => '/images/food/yummoomanow.png',
+                'image_url' => '/images/foods/yummoomanow.png',
                 'is_recommend' => 0,
                 'price' => 50.00,
                 'discount' => 0,
@@ -540,7 +540,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ยำหมูกรอบ',
                 'description' => 'หมูกรอบ',
-                'image_url' => '/images/food/yummookrop.png',
+                'image_url' => '/images/foods/yummookrop.png',
                 'is_recommend' => 0,
                 'price' => 50.00,
                 'discount' => 0,
@@ -549,7 +549,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ต้มยำไก่',
                 'description' => 'ไก่',
-                'image_url' => '/images/food/tomyumkai.png',
+                'image_url' => '/images/foods/tomyumkai.png',
                 'is_recommend' => 0,
                 'price' => 40.00,
                 'discount' => 0,
@@ -558,7 +558,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ต้มยำกุ้ง',
                 'description' => 'กุ้ง',
-                'image_url' => '/images/food/tomyumkung.png',
+                'image_url' => '/images/foods/tomyumkung.png',
                 'is_recommend' => 0,
                 'price' => 60.00,
                 'discount' => 0,
@@ -567,7 +567,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ต้มยำหมู',
                 'description' => 'หมู',
-                'image_url' => '/images/food/tomyummoo.png',
+                'image_url' => '/images/foods/tomyummoo.png',
                 'is_recommend' => 0,
                 'price' => 40.00,
                 'discount' => 0,
@@ -576,7 +576,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'พิซซ่าค็อตโต้',
                 'description' => 'พิซซ่าแฮม_มะกอกดำ_ไข่ต้ม_มะเขือเทศ_ชีส',
-                'image_url' => '/images/food/pizza_al_quattro.png',
+                'image_url' => '/images/foods/pizza_al_quattro.png',
                 'is_recommend' => 0,
                 'price' => 169.00,
                 'discount' => 0,
@@ -585,7 +585,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'พิซซ่าคาลาซิงก้า',
                 'description' => 'พิซซ่าซาลามี_หอมใหญ่_พริกใหญ่_มะเขือเทศ_ชีส',
-                'image_url' => '/images/food/pizza_casalinga.png',
+                'image_url' => '/images/foods/pizza_casalinga.png',
                 'is_recommend' => 0,
                 'price' => 169.00,
                 'discount' => 0,
@@ -594,7 +594,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'เสต็กเนื้อรสพริกไทย',
                 'description' => 'เสต็ก_เนื้อ_พริกไทยดำ',
-                'image_url' => '/images/food/pepper_streak_breef.png',
+                'image_url' => '/images/foods/pepper_streak_breef.png',
                 'is_recommend' => 0,
                 'price' => 169.00,
                 'discount' => 0,
@@ -603,7 +603,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'เสต็กสันในหมูพันเบคอน',
                 'description' => 'เสต็ก_หมู_พันเบคอน',
-                'image_url' => '/images/food/fillet_mignon.png',
+                'image_url' => '/images/foods/fillet_mignon.png',
                 'is_recommend' => 0,
                 'price' => 149.00,
                 'discount' => 0,
@@ -612,7 +612,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'สปาเก็ตตี้',
                 'description' => 'สปาเก็ตตี้ซอสเนื้อ',
-                'image_url' => '/images/food/spaghetti_meatsauce.png',
+                'image_url' => '/images/foods/spaghetti_meatsauce.png',
                 'is_recommend' => 0,
                 'price' => 69.00,
                 'discount' => 0,
@@ -621,7 +621,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'เพนเน่',
                 'description' => 'เพนเน่ซอสเนื้อ',
-                'image_url' => '/images/food/penne_meatsauce.png',
+                'image_url' => '/images/foods/penne_meatsauce.png',
                 'is_recommend' => 0,
                 'price' => 69.00,
                 'discount' => 0,

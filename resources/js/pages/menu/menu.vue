@@ -128,7 +128,7 @@
           </div>
 
 
-                          <button class="btn btn-primary py-2 w-100 mt-2">ยืนยันการสั่งอาหาร</button>
+                          <button class="btn btn-primary py-2 w-100 mt-2" @click="confirmOrder()">ยืนยันการสั่งอาหาร</button>
 
     </b-modal>
   </div>
@@ -164,6 +164,27 @@ export default {
    showModal() {
     this.$refs['my-modal'].show()
   },
+  confirmOrder(){
+    let _this = this
+    this.$swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    _this.$swal.fire({
+      type: 'success',
+      title: 'สำเร็จ'
+    }
+        
+    )
+  }
+})
+  }
   
   },
   data: () => ({
