@@ -10,4 +10,14 @@ class Restaurant extends Model
     {
         return $this->hasMany('App\Table');
     }
+
+    public function categories()
+    {
+        return $this->hasMany('App\Category');
+    }
+
+    public function food_recomments()
+    {
+        return $this->hasManyThrough('App\Food', 'App\Category')->where('is_recommend',1);
+    }
 }
