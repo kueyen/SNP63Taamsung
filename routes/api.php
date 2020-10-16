@@ -49,5 +49,6 @@ Route::post('table/add', 'TableController@add');
 Route::post('webHook', 'Line\WebhookController@index');
 
 Route::post('addbill', 'BillController@addBill');
+Route::post('closebill', 'BillController@closeBill');
 
 crud('foods', 'FoodController');
