@@ -8,6 +8,7 @@ use App\Food;
 use Line\WebhookController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 class BillController extends Controller
 {
@@ -73,16 +74,23 @@ class BillController extends Controller
     public function closeBill(Request $request)
     {
         $bill = Bill::find($request->bill_id);
+
+        // ปิดบิล
         $bill->update([
             'status' => 0
         ]);
         $users = User::where('table_id', $bill->table_id)->get();
 
+        // ลบ active โต๊ะของ user
         $userRemoveTable = User::where('table_id', $bill->table_id)->update([
             'table_id' => null
         ]);
 
-        $bill->table->restaurant;
+        $bill->table()->update([
+            'key' => (string) Str::uuid()
+        ]);
+
+        // โหลด line user id ทุกคนที่ active โต๊ะในบิลนี้
         $to =  Arr::pluck($users, 'line_user_id');
         $billList = [];
         $amount = 0;
