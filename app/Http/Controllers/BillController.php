@@ -17,14 +17,20 @@ class BillController extends Controller
 
         $uid = $request->line_user_id;
         $user =  User::where('line_user_id', $uid)->first();
+        // ไป select user ที่ line_user_id
 
         $findBill = Bill::where('table_id', $user->table_id)->latest()->first();
+        //หาบิลอันสุดท้ายของโต๊ะ x ซึ่งโต๊ะเอามาจาก active table users.table_id orderby created_at desc อันแรก
 
         $forms = [];
-
+        // ประกาศสร้างตัวแปรก่อน save
 
         foreach ($request->carts as $cart) {
+            // loop ค่าที่ได้จาก req carts ที่ vue ส่งมา
             $food = Food::find($cart['id']);
+            // หา food ด้วย id เพื่อหาราคาจริงจาก db
+
+            // พัก data ไว้ก่อนนำไป save ลง bill detail
             array_push($forms, [
                 'food_id' => $food->id,
                 'user_id' => $user->id,
@@ -37,6 +43,7 @@ class BillController extends Controller
         $bill_id = '';
 
         if (!$findBill || $findBill->status == 0) {
+            // ถ้า ไม่เคยเจอบิล หรือเป็น 0 จะสร้างใหม่
             $bill = Bill::create([
                 'table_id' => $user->table_id
             ]);
@@ -47,6 +54,7 @@ class BillController extends Controller
                 $bill->details()->create($form);
             }
         } else {
+            //  เป็น 1 ไม่สร้างใหม่อัพเดทแทน
             $bill_id = $findBill->id;
             foreach ($forms as $form) {
                 $findBill->details()->create($form);
@@ -79,6 +87,7 @@ class BillController extends Controller
         $bill->update([
             'status' => 0
         ]);
+
         $users = User::where('table_id', $bill->table_id)->get();
 
         // ลบ active โต๊ะของ user
