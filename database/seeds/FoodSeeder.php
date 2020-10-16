@@ -404,7 +404,7 @@ class FoodSeeder extends Seeder
             [
                 'name' => 'ข้าวผัดขี้เมาเนื้อ',
                 'description' => 'เนื้อ',
-                'image_url' => '/images/foodskeemaonue.png',
+                'image_url' => '/images/foods/keemaonue.png',
                 'is_recommend' => 0,
                 'price' => 45.00,
                 'discount' => 0,
