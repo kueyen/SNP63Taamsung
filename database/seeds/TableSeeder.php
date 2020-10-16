@@ -29,6 +29,20 @@ class TableSeeder extends Seeder
 
                 'restaurant_id' => 1
             ],
+            //3 Immhee
+            [
+                'name' => 'โต๊ะ1',
+                'key' =>  (string) Str::uuid(),
+
+                'restaurant_id' => 2
+            ],
+            //4 kkn
+            [
+                'name' => 'โต๊ะ1',
+                'key' =>  (string) Str::uuid(),
+
+                'restaurant_id' => 3
+            ],
         ]);
     }
 }

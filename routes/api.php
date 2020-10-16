@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
 function crud($name, $controller)
 {
     Route::resource("{$name}", "{$controller}");
@@ -46,5 +47,7 @@ Route::resource('res', 'RestaurantController');
 Route::post('table/add', 'TableController@add');
 
 Route::post('webHook', 'Line\WebhookController@index');
+
+Route::post('addbill', 'BillController@addBill');
 
 crud('foods', 'FoodController');

@@ -7,6 +7,7 @@ use App\Food;
 use App\User;
 use App\Table;
 use App\Log;
+use App\Restaurant;
 use Illuminate\Http\Request;
 
 
@@ -141,7 +142,7 @@ class WebhookController extends Controller
 
 
         foreach ($foods as $food) {
-            array_push($cards, ['img' => 'https://www.twinpalmshotelsresorts.com/wp-content/uploads/2019/09/4024-1024x683.jpg', 'title' => $food->name, 'description' => $food->description, 'url' => 'https://google.co.th', 'price' => $food->price]);
+            array_push($cards, ['res_name' => $table->restaurant->name, 'img' => url($food->image_url), 'title' => $food->name, 'description' => $food->description, 'url' => "https://liff.line.me/1654579616-vejGe5jz?id={$table->restaurant_id}", 'price' => $food->price]);
         }
 
 
@@ -223,7 +224,6 @@ class WebhookController extends Controller
 
 
 
-
     public function generateCard($datas)
     {
 
@@ -256,6 +256,11 @@ class WebhookController extends Controller
                             [
                                 "type" => "text",
                                 "text" => $data['description'],
+                                "color" => "#909497"
+                            ],
+                            [
+                                "type" => "text",
+                                "text" => 'ร้าน : ' . $data['res_name'],
                                 "color" => "#909497"
                             ],
                             [
@@ -295,18 +300,18 @@ class WebhookController extends Controller
                                 "action" => [
                                     "type" => "uri",
                                     "label" => "เลือกอาหาร",
-                                    "uri" => "https://linecorp.com"
+                                    "uri" => $data['url']
                                 ],
                                 "color" => "#fc6011"
                             ],
-                            [
-                                "type" => "button",
-                                "action" => [
-                                    "type" => "uri",
-                                    "label" => "เพิ่มลงรายการโปรด",
-                                    "uri" => "https://linecorp.com"
-                                ]
-                            ]
+                            // [
+                            //     "type" => "button",
+                            //     "action" => [
+                            //         "type" => "uri",
+                            //         "label" => "เพิ่มลงรายการโปรด",
+                            //         "uri" => "https://linecorp.com"
+                            //     ]
+                            // ]
                         ]
                     ]
                 ];
