@@ -224,7 +224,7 @@ export default {
     },
   },
   async created() {
-    await this.initializeLiff('1654579616-vejGe5jz')
+    // await this.initializeLiff('1654579616-vejGe5jz')
     this.fetch(this.id)
   },
 }
