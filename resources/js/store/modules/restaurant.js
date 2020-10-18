@@ -16,14 +16,14 @@ export const getters = {
 // mutations
 export const mutations = {
   [types.SET_RES](state, data) {
-    state.show = data.result
+    state.show = data
   }
 }
 
 // actions
 export const actions = {
   async show({ commit }, id) {
-    const { data } = await axios.get('/api/foods/' + id)
+    const { data } = await axios.get('/api/res/' + id)
     commit(types.SET_RES, data)
   }
 }

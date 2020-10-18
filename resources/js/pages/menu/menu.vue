@@ -1,15 +1,15 @@
 <template>
   <div class="">
-    <div>
+    <div v-if="!showId">
       <div v-if="menu">
         <div class="bg-white py-3 add_to_basket" v-if="carts.length">
           <div class="container">
             <button class="btn btn-primary w-100" @click="showModal">
               <div class="clearfix">
                 <div class="float-left">
-                  รายการอาหาร {{ carts.length }} อย่าง {{ sumAmount() }} จาน
+                  รายการอาหาร {{ carts.length }} อย่าง {{ sumAmount }} จาน
                 </div>
-                <div class="float-right">{{ sum() }} บาท</div>
+                <div class="float-right">{{ sum }} บาท</div>
               </div>
             </button>
           </div>
@@ -96,7 +96,7 @@
         </div>
 
         <b-modal ref="my-modal" hide-footer title="รายการอาหาร" scrollable style="z-index: 9999999">
-          <div class="row bt-dashed text-dark" v-for="(food, index) in cartsx" :key="index">
+          <div class="row bt-dashed text-dark" v-for="(food, index) in carts" :key="index">
             <div class="col-5">
               <img :src="food.image_url" class="w-100 img-fit br20" height="100%" />
             </div>
@@ -113,8 +113,8 @@
           </div>
 
           <div class="clearfix">
-            <div class="float-left">รายการอาหาร {{ carts.length }} อย่าง {{ sumAmount() }} จาน</div>
-            <div class="float-right">{{ sum() }} บาท</div>
+            <div class="float-left">รายการอาหาร {{ carts.length }} อย่าง {{ sumAmount }} จาน</div>
+            <div class="float-right">{{ sum }} บาท</div>
           </div>
 
           <button class="btn btn-primary py-2 w-100 mt-2" @click="confirmOrder()">
@@ -128,39 +128,15 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import { sumBy, findKey } from 'lodash'
-import axios from 'axios'
 export default {
   methods: {
     ...mapActions({
-      fetch: 'food/show',
+      fetch: 'restaurant/show',
+      addToCart: 'cart/addToCart',
+      addToBill: 'cart/addToBill',
     }),
-    addToCart(food) {
-      let findAddList = findKey(this.carts, (el) => el.id == food.id)
-      console.log(findAddList)
-      if (findAddList != undefined) {
-        food.amount = this.carts[findAddList].amount + 1
-        this.carts.splice(findAddList, 1)
-      } else {
-        food.amount = 1
-      }
-      this.carts.push(food)
-    },
-    sum() {
-      return sumBy(this.carts, (el) => el.real_price * el.amount)
-    },
-    sumAmount() {
-      return sumBy(this.carts, (el) => el.amount)
-    },
     showModal() {
       this.$refs['my-modal'].show()
-    },
-    async addToBill() {
-      const { data } = await axios.post('/api/addbill', {
-        line_user_id: this.user.id,
-        carts: this.carts,
-      })
-      console.log(data)
     },
     confirmOrder() {
       let _this = this
@@ -194,6 +170,7 @@ export default {
   },
   data: () => ({
     sortBy: 'score',
+    showId: null,
     sorts: [
       {
         name: 'score',
@@ -208,23 +185,22 @@ export default {
         label: 'ราคา',
       },
     ],
-    carts: [],
   }),
   computed: {
     ...mapGetters({
-      menu: 'food/show',
+      menu: 'restaurant/show',
+      sum: 'cart/sum',
+      sumAmount: 'cart/sumAmount',
+      carts: 'cart/carts',
     }),
     id() {
       let lp = this.$liffParams.get('id')
       let t = lp ? lp : this.$route.query.id
       return t
     },
-    cartsx() {
-      return this.carts
-    },
   },
   async created() {
-    await this.initializeLiff('1654579616-vejGe5jz')
+    // await this.initializeLiff('1654579616-vejGe5jz')
     this.fetch(this.id)
   },
 }

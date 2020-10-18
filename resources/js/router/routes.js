@@ -42,7 +42,7 @@ export default [
     component: page('menu/menu.vue')
   },
   {
-    path: '/menus/:id',
+    path: '/menus/show',
     name: 'menu.show',
     component: page('menu/menuShow.vue')
   },
