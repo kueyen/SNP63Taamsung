@@ -34,6 +34,10 @@ import 'sweetalert2/src/sweetalert2.scss'
 
 Vue.prototype.$swal = Swal
 
+import VueScrollactive from 'vue-scrollactive'
+
+Vue.use(VueScrollactive)
+
 new Vue({
   i18n,
   store,
