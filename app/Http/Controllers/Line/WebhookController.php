@@ -133,7 +133,7 @@ class WebhookController extends Controller
         try {
             $foods = Food::whereHas('category', function ($q) use ($table) {
                 $q->where('restaurant_id', $table->restaurant_id);
-            })->where('is_recommend', 1)->limit(10)->get();
+            })->where('is_recommend', 1)->limit(4)->get();
         } catch (\Exception $e) {
             $this->sendText($reply_token, $e->getMessage());
         }
@@ -142,7 +142,7 @@ class WebhookController extends Controller
 
 
         foreach ($foods as $food) {
-            array_push($cards, ['res_name' => $table->restaurant->name, 'img' => url($food->image_url), 'title' => $food->name, 'description' => $food->description, 'url' => "https://liff.line.me/1654579616-vejGe5jz?id={$table->restaurant_id}", 'price' => $food->price]);
+            array_push($cards, ['res_name' => $table->restaurant->name, 'img' => url($food->image_url), 'title' => $food->name, 'description' => $food->description, 'url' => "https://liff.line.me/1654579616-vejGe5jz?show={$food->id}", 'price' => $food->price]);
         }
 
 

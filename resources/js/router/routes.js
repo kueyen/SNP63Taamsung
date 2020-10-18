@@ -39,7 +39,8 @@ export default [
   {
     path: '/menus',
     name: 'menu.index',
-    component: page('menu/menu.vue')
+    component: page('menu/menu.vue'),
+    savedPosition: true
   },
   {
     path: '/menus/show',
