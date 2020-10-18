@@ -66,6 +66,8 @@ export default {
       addToCart: 'cart/addToCart',
     }),
     add(food) {
+      food.amount = this.amount
+      console.log('before add', food)
       this.addToCart(food)
       this.$emit('back', this.food.category.restaurant_id)
     },
@@ -98,8 +100,11 @@ export default {
     }),
   },
   async created() {
-    // await this.initializeLiff('1654579616-vejGe5jz')
     this.fetch(this.id)
+    let find = this.carts.find((el) => el.id == this.id)
+    if (find) {
+      this.amount = find.amount
+    }
   },
 }
 </script>

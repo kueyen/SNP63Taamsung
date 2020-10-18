@@ -23,10 +23,10 @@ export const mutations = {
   [types.SET_CART](state, food) {
     let findAddList = findKey(state.carts, el => el.id == food.id)
     if (findAddList != undefined) {
-      food.amount = state.carts[findAddList].amount + 1
+      if (!(food.amount > 1)) {
+        food.amount = state.carts[findAddList].amount + 1
+      }
       state.carts.splice(findAddList, 1)
-    } else {
-      food.amount = 1
     }
     state.carts.push(food)
   }

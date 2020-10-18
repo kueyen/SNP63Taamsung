@@ -102,6 +102,45 @@ class WebhookController extends Controller
         $send_result = $this->send_reply_message($post_body);
     }
 
+
+    function sendScanTableImage($reply_token)
+    {
+        $m = [
+            [
+                "type" => "flex",
+                "altText" => "กรุณาทำการสแกน Qr Code ของโต๊ะอาหาร ก่อนใช้งานฟังชันดังกล่าว",
+                "contents" => array(
+                    'type' => 'carousel',
+                    'contents' => [array(
+                        'type' => 'bubble',
+                        'hero' =>
+                        array(
+                            'type' => 'image',
+                            'url' => url('images/qrcode.jpg'),
+                            'size' => 'full',
+                            'aspectRatio' => '30:26',
+                            'aspectMode' => 'cover',
+                            'action' =>
+                            array(
+                                'type' => 'uri',
+                                'uri' => 'https://line.me/R/nv/QRCodeReader',
+                            ),
+                        ),
+                    )]
+
+                )
+            ],
+        ];
+        $data = [
+            'replyToken' => $reply_token,
+            'messages' =>  $m
+        ];
+
+        $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
+
+        $send_result = $this->send_reply_message($post_body);
+    }
+
     function sendText($reply_token, $text)
     {
         $m = [
@@ -127,9 +166,10 @@ class WebhookController extends Controller
         $user = User::where('line_user_id', $user_id)->first();
         if (!$user->table_id) {
             // return $this->sendPleaseAddHome($reply_token, 'payment');
-            $this->sendText($reply_token, 'กรุณาทำการสแกนโต๊ะก่อน https://line.me/R/nv/QRCodeReader');
+            $this->sendScanTableImage($reply_token);
         }
         $table = Table::find($user->table_id);
+        $restaurant = Restaurant::whereId($table->restaurant_id)->withCount('foods')->first();
         try {
             $foods = Food::whereHas('category', function ($q) use ($table) {
                 $q->where('restaurant_id', $table->restaurant_id);
@@ -142,7 +182,7 @@ class WebhookController extends Controller
 
 
         foreach ($foods as $food) {
-            array_push($cards, ['res_name' => $table->restaurant->name, 'img' => url($food->image_url), 'title' => $food->name, 'description' => $food->description, 'url' => "https://liff.line.me/1654579616-vejGe5jz?show={$food->id}", 'price' => $food->price]);
+            array_push($cards, ['res_name' => $restaurant->name, 'img' => url($food->image_url), 'title' => $food->name, 'description' => $food->description, 'url' => "https://liff.line.me/1654579616-vejGe5jz?show={$food->id}", 'price' => $food->price]);
         }
 
 
@@ -150,6 +190,83 @@ class WebhookController extends Controller
         $generateCard = $this->generateCard(
             $cards
         );
+
+        array_push($generateCard,  [
+            "type" => "bubble",
+            "header" => [
+                "type" => "box",
+                "layout" => "vertical",
+                "contents" => [],
+                "backgroundColor" => "#fc6011"
+            ],
+            "body" => [
+                "type" => "box",
+                "layout" => "vertical",
+                "spacing" => "xxl",
+                "action" => [
+                    "type" => "uri",
+                    "uri" => "https://liff.line.me/1654579616-vejGe5jz?id={$table->restaurant_id}"
+                ],
+                "contents" => [
+                    [
+                        "type" => "text",
+                        "text" => "รายการอาหารอื่นๆ",
+                        "size" => "xl",
+                        "weight" => "bold",
+                        "color" => "#ffffff",
+                        "align" => "center"
+                    ],
+                    [
+                        "type" => "box",
+                        "layout" => "vertical",
+                        "spacing" => "sm",
+                        "contents" => [
+                            [
+                                "type" => "text",
+                                "text" => "{$restaurant->foods_count}",
+                                "color" => "#ffffff",
+                                "size" => "5xl",
+                                "align" => "center"
+                            ]
+                        ]
+                    ],
+                    [
+                        "type" => "box",
+                        "layout" => "vertical",
+                        "contents" => [
+                            [
+                                "type" => "text",
+                                "text" => "รายการ",
+                                "align" => "center",
+                                "color" => "#ffffff"
+                            ]
+                        ]
+                    ]
+                ],
+                "backgroundColor" => "#fc6011"
+            ],
+            "footer" => [
+                "type" => "box",
+                "layout" => "vertical",
+                "contents" => [
+                    [
+                        "type" => "spacer",
+                        "size" => "xxl"
+                    ],
+                    [
+                        "type" => "button",
+                        "style" => "secondary",
+                        "color" => "#ffffff",
+                        "action" => [
+                            "type" => "uri",
+                            "label" => "กดเพื่อดูรายการอาหารทั้งหมด",
+                            "uri" => "https://liff.line.me/1654579616-vejGe5jz?id={$table->restaurant_id}"
+                        ]
+                    ]
+                ],
+                "backgroundColor" => "#fc6011"
+            ]
+        ]);
 
 
 
@@ -323,6 +440,7 @@ class WebhookController extends Controller
 
             array_push($cards, $set);
         }
+
 
         return $cards;
     }

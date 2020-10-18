@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Bill;
 use App\User;
 use App\Food;
+use Carbon\Carbon;
 use Line\WebhookController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -198,13 +199,28 @@ class BillController extends Controller
                                     "type" => "box",
                                     "layout" => "vertical",
                                     "contents" => [
+
                                         [
-                                            "type" => "text",
-                                            "text" => "ตามสั่ง",
-                                            "weight" => "bold",
-                                            "color" => "#f26222",
-                                            "size" => "sm"
+                                            "type" => "box",
+                                            "layout" => "horizontal",
+                                            "contents" => [
+                                                [
+                                                    "type" => "text",
+                                                    "text" => "ตามสั่ง",
+                                                    "weight" => "bold",
+                                                    "color" => "#f26222",
+                                                    "size" => "sm"
+                                                ],
+                                                [
+                                                    "type" => "text",
+                                                    "text" => $bill->updated_at->format('d/m/Y h:i'),
+                                                    "size" => "sm",
+                                                    "color" => "#111111",
+                                                    "align" => "end"
+                                                ]
+                                            ]
                                         ],
+
                                         [
                                             "type" => "text",
                                             "text" => $bill->table->restaurant->name,
@@ -214,11 +230,11 @@ class BillController extends Controller
                                         ],
                                         [
                                             "type" => "text",
-                                            "text" => $bill->table->restaurant->description,
-                                            "size" => "xs",
-                                            "color" => "#aaaaaa",
-                                            "wrap" => true
+                                            "text" => $bill->table->name,
+                                            "size" => "lg",
+                                            "margin" => "md"
                                         ],
+
                                         [
                                             "type" => "separator",
                                             "margin" => "xxl"
