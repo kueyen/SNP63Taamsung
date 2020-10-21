@@ -24,7 +24,7 @@ class UsersSeeder extends Seeder
             ], [
                 'first_name' => 'test',
                 'last_name' => 'man',
-                'email' => 'krit.muangnoi@gmail.com',
+                'email' => 'testman@gmail.com',
                 'tel' => '0964096784',
                 'line_user_id' => 'U08f2e0895b23efaf64acaeb60f96ef37', 'table_id' => 1, 'password' => bcrypt('123456')
             ]
