@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="position-absolute">
-      <button class="btn btn-primary ml-2 w-100 mt-2" @click="$emit('back', food.category.restaurant_id)"><i class="fas fa-chevron-left"></i></button>
+      <button class="btn btn-primary m-2 w-100 " @click="$emit('back', food.category.restaurant_id)"><i class="fas fa-chevron-left"></i></button>
       <!-- <button @click="$emit('back', food.category.restaurant_id)"><i class="fas fa-chevron-left"></i></button> -->
     </div>
     

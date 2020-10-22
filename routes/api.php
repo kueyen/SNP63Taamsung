@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+use Krit\LineBot;
 
 function crud($name, $controller)
 {
@@ -52,3 +53,8 @@ Route::post('addbill', 'BillController@addBill');
 Route::post('closebill', 'BillController@closeBill');
 
 crud('foods', 'FoodController');
+
+Route::get('a',function(){
+    $bot = new LineBot('1RJVFAn7A09mJIUAj3sfgxTvzic1p51CXhP9Mwx8j1xRdjSWUwXTMmkq7TNgLIrcdMHPbjFcFCpDxeU3JQ40o8Vp9EEisJmZEOiK4m0sMBNczICWYZLOHGBG5F+xfYX+uFVrn1CPqjXfxXg8HzLdSgdB04t89/1O/w1cDnyilFU=');
+    return $bot->setUser('U98a51562ca53bb6d5f844da8399e2a01')->addText('aad')->getUser();
+});
