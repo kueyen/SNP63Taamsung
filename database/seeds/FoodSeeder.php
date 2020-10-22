@@ -24,15 +24,6 @@ class FoodSeeder extends Seeder
                 'category_id' => 1,
             ],
             [
-                'name' => 'ข้าวกะเพราหมู',
-                'description' => 'ไก่',
-                'image_url' => '/images/foods/kapraomoo.png',
-                'is_recommend' => 1,
-                'price' => 40.00,
-                'discount' => 5,
-                'category_id' => 2,
-            ],
-            [
                 'name' => 'ข้าวกะเพราหมูกรอบ',
                 'description' => 'หมูกรอบ',
                 'image_url' => '/images/foods/kapraomookrop.png',
