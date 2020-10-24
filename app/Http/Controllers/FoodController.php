@@ -23,7 +23,7 @@ class FoodController extends Controller
 
         $items = $this->mainModel::where(function ($q) use ($keyword) {
             $q->orWhere('name', 'LIKE', "%$keyword%");
-        })->orderBy('created_at', $sortBy)->paginate($showItem);
+        })->with('category')->orderBy('created_at', $sortBy)->paginate($showItem);
 
         return [
             "items" =>
