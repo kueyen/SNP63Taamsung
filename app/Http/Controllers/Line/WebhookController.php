@@ -15,10 +15,11 @@ class WebhookController extends Controller
 {
 
     private $bot;
-    
-  
 
-    public function __construct(){
+
+
+    public function __construct()
+    {
         $this->bot = new LineBot('1RJVFAn7A09mJIUAj3sfgxTvzic1p51CXhP9Mwx8j1xRdjSWUwXTMmkq7TNgLIrcdMHPbjFcFCpDxeU3JQ40o8Vp9EEisJmZEOiK4m0sMBNczICWYZLOHGBG5F+xfYX+uFVrn1CPqjXfxXg8HzLdSgdB04t89/1O/w1cDnyilFU=');
     }
 
@@ -55,8 +56,8 @@ class WebhookController extends Controller
                             $this->sendFoodList();
                         }
 
-                        
-                      
+
+
                         // END LOGIC FROM REPLY MESSAGE //
 
 
@@ -79,28 +80,27 @@ class WebhookController extends Controller
     function sendRegisterImage()
     {
         return $this->bot
-        ->addImageURI(
-            'กรุณาทำการลงทะเบียนก่อนใช้งานฟังชันดังกล่าว',
-            url('images/registerBanner.jpg'),
-            'https://liff.line.me/1654579616-o707RL0n',
-            30,
-            26
+            ->addImageURI(
+                'กรุณาทำการลงทะเบียนก่อนใช้งานฟังชันดังกล่าว',
+                url('images/registerBanner.jpg'),
+                'https://liff.line.me/1654579616-o707RL0n',
+                30,
+                26
             )
-        ->reply();
+            ->reply();
     }
 
 
-    function sendScanTableImage($reply_token)
+    function sendScanTableImage()
     {
-         return $this->bot
-        ->addImageScanQR(
-            'กรุณาทำการสแกน Qr Code ของโต๊ะอาหาร ก่อนใช้งานฟังชันดังกล่าว',
-            url('images/qrcode.jpg'),
-            30,
-            26
+        return $this->bot
+            ->addImageScanQR(
+                'กรุณาทำการสแกน Qr Code ของโต๊ะอาหาร ก่อนใช้งานฟังชันดังกล่าว',
+                url('images/qrcode.jpg'),
+                30,
+                26
             )
-        ->reply();
-        
+            ->reply();
     }
 
     function sendText($reply_token, $text)
@@ -128,7 +128,7 @@ class WebhookController extends Controller
         $user = $this->bot->getUser();
         if (!$user->table_id) {
             // return $this->sendPleaseAddHome($reply_token, 'payment');
-            $this->sendScanTableImage($reply_token);
+            $this->sendScanTableImage();
         }
         $table = Table::find($user->table_id);
         $restaurant = Restaurant::whereId($table->restaurant_id)->withCount('foods')->first();
@@ -137,7 +137,7 @@ class WebhookController extends Controller
                 $q->where('restaurant_id', $table->restaurant_id);
             })->where('is_recommend', 1)->limit(4)->get();
         } catch (\Exception $e) {
-            $this->sendText($reply_token, $e->getMessage());
+            // $this->sendText($reply_token, $e->getMessage());
         }
 
 
@@ -231,7 +231,7 @@ class WebhookController extends Controller
         ]);
 
 
-       return  $this->bot->addCarousel('กรุณาเลือกรายการเพื่อสั่งอาหาร', $generateCard)->reply();
+        return  $this->bot->addCarousel('กรุณาเลือกรายการเพื่อสั่งอาหาร', $generateCard)->reply();
     }
 
 

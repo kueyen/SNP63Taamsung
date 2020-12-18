@@ -66,6 +66,11 @@ export default [
     component: page('menu/menuShow.vue')
   },
   {
+    path: '/payments',
+    name: 'payment',
+    component: page('payments/payment.vue')
+  },
+  {
     path: '/admin',
     component: page('admin/index.vue'),
     children: [
@@ -75,7 +80,9 @@ export default [
         component: page('admin/adminDashboard.vue')
       },
       ...cruGen('categories', 'categories'),
-      ...cruGen('foods', 'foods')
+      ...cruGen('foods', 'foods'),
+      ...cruGen('tables', 'tables')
+
     ]
   },
 

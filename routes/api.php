@@ -55,6 +55,10 @@ Route::post('closebill', 'BillController@closeBill');
 
 crud('foods', 'FoodController');
 crud('categories', 'CategoryController');
+crud('tables', 'TableController');
+
+Route::post("tables/{id}/kick", "TableController@kick");
+
 
 Route::get('a', function () {
     $bot = new LineBot('1RJVFAn7A09mJIUAj3sfgxTvzic1p51CXhP9Mwx8j1xRdjSWUwXTMmkq7TNgLIrcdMHPbjFcFCpDxeU3JQ40o8Vp9EEisJmZEOiK4m0sMBNczICWYZLOHGBG5F+xfYX+uFVrn1CPqjXfxXg8HzLdSgdB04t89/1O/w1cDnyilFU=');
