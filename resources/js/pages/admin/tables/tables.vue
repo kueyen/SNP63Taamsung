@@ -111,7 +111,7 @@
       <b-modal ref="receipt" hide-footer title="">
         <div class="text-center">
           <button class="btn btn-dark" @click="closeBill()">ชำระด้วยเงินสด</button>
-          <button class="btn btn-outline-primary" disabled>ชำระด้วยบัตรเครดิต/เดบิต</button>
+          <button class="btn btn-outline-primary" disabled>ชำระด้วยพร้อมเพย์</button>
         </div>
       </b-modal>
       <!-- ////////// SWOWING //////////-->

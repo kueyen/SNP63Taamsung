@@ -52,6 +52,8 @@ Route::post('webHook', 'Line\WebhookController@index');
 
 Route::post('addbill', 'BillController@addBill');
 Route::post('closebill', 'BillController@closeBill');
+Route::get('testjson', 'BillController@test');
+Route::get('test', 'Line\WebhookController@test');
 
 crud('foods', 'FoodController');
 crud('categories', 'CategoryController');

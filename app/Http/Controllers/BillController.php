@@ -294,6 +294,22 @@ class BillController extends Controller
 
         return ['message' => 'success'];
     }
+    public function test()
+    {
+        $data = [
+            'to' => 'U98a51562ca53bb6d5f844da8399e2a01',
+            'messages' => [
+                ['type' => 'text', 'text' => 'hello'],
+                ['type' => 'text', 'text' => 'xxxx']
+
+            ]
+        ];
+
+        $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
+
+
+        return $send_result = $this->send_push_message($post_body);
+    }
 
     public function send_push_message($post_body)
     {
