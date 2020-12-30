@@ -56,6 +56,7 @@ Route::post('closebill', 'BillController@closeBill');
 crud('foods', 'FoodController');
 crud('categories', 'CategoryController');
 crud('tables', 'TableController');
+crud('orders', 'OrderController');
 
 Route::post("tables/{id}/kick", "TableController@kick");
 

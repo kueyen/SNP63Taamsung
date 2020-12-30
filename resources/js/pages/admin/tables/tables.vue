@@ -10,6 +10,11 @@
             <button class="btn btn-success">Add <i class="fas fa-plus"></i></button>
           </router-link>
         </div>
+        <div class="float-left ml-2">
+          <button class="btn btn-primary" @click="fetch()">
+            Refresh <i class="fas fa-sync-alt"></i>
+          </button>
+        </div>
       </div>
       <!-- ////////// Page Title //////////-->
       <div class="clearfix mb-4">
@@ -164,6 +169,9 @@ export default {
       const { data } = await axios.post(this.$api(`closebill`), {
         bill_id: this.bill_id,
       })
+      await this.fetch()
+      this.$refs['receipt'].hide()
+
       console.log(data)
     },
     async fetch(page = 1) {

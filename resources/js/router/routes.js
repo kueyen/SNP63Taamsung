@@ -81,7 +81,8 @@ export default [
       },
       ...cruGen('categories', 'categories'),
       ...cruGen('foods', 'foods'),
-      ...cruGen('tables', 'tables')
+      ...cruGen('tables', 'tables'),
+      ...cruGen('orders', 'orders')
 
     ]
   },

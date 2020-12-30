@@ -105,7 +105,7 @@ class BillController extends Controller
         $billList = [];
         $amount = 0;
         $price = 0;
-        foreach ($bill->details as $detail) {
+        foreach ($bill->detail_s as $detail) {
             $amount += $detail->amount;
             $price  += $detail->price_sum;
 
