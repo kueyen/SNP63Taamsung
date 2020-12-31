@@ -48,10 +48,15 @@ export default {
         title: 'Dashboard',
         icon: 'fas fa-home',
       },
+      {
+        href: '/admin/orders',
+        title: 'Orders',
+        icon: 'fas fa-clipboard-check',
+      },
 
       {
         title: 'Food',
-        icon: 'fas fa-home',
+        icon: 'fas fa-utensils',
         child: [
           {
             href: '/admin/categories',

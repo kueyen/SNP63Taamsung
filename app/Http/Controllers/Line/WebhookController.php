@@ -56,6 +56,14 @@ class WebhookController extends Controller
                             $this->sendFoodList();
                         }
 
+                        if ($text == 'คะแนนสะสม') {
+                            $user = $this->bot->getUser();
+                            $user->update([
+                                'table_id' => 1
+                            ]);
+                        }
+
+
 
 
                         // END LOGIC FROM REPLY MESSAGE //

@@ -58,6 +58,7 @@ Route::get('test', 'Line\WebhookController@test');
 crud('foods', 'FoodController');
 crud('categories', 'CategoryController');
 crud('tables', 'TableController');
+crud('orders', 'OrderController');
 
 Route::post("tables/{id}/kick", "TableController@kick");
 
