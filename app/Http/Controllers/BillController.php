@@ -26,6 +26,8 @@ class BillController extends Controller
         $forms = [];
         // ประกาศสร้างตัวแปรก่อน save
 
+
+        //1,4,6
         foreach ($request->carts as $cart) {
             // loop ค่าที่ได้จาก req carts ที่ vue ส่งมา
             $food = Food::find($cart['id']);

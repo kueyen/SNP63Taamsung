@@ -65,28 +65,28 @@
           <img :src="data.item.image_url" height="100" />
         </template>
         <template v-slot:cell(actions)="data">
-          <button class="btn btn-primary" @click="showQr(data.item.qr_url)">
+          <button class="btn btn-primary btn-sm" @click="showQr(data.item.qr_url)">
             <i class="fas fa-qrcode"></i> QR Code
           </button>
 
           <button
-            class="btn btn-success"
+            class="btn btn-success btn-sm"
             @click="showReceipt(data.item.latest_bills.id)"
             :disabled="!data.item.latest_bills"
           >
             <i class="far fa-money-bill-alt"></i> Receipt
           </button>
           <button
-            class="btn btn-info"
+            class="btn btn btn-link btn-sm"
             @click="kick(data.item.id)"
             :disabled="data.item.latest_bills"
           >
             <i class="far fa-window-close"></i> Kick
           </button>
           <router-link :to="{ name: `${$route.name}.edit`, params: { id: data.item.id } }">
-            <button class="btn btn-warning"><i class="far fa-edit"></i> Edit</button>
+            <button class="btn btn-warning btn-sm"><i class="far fa-edit"></i> Edit</button>
           </router-link>
-          <button class="btn btn-danger" @click="del(data.item.id)">
+          <button class="btn btn-danger btn-sm" @click="del(data.item.id)">
             <i class="far fa-trash-alt"></i> Delete
           </button>
         </template>

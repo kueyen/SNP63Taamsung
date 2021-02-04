@@ -7,7 +7,7 @@
             <sidebar-menu :menu="menu" width="300" class="bg-admin">
               <div slot="header" class="text-center pt-3 text-white">
                 <img src="/images/taamsung_w.png" width="20%" /><br />
-                <div class="mt-2">จัดการร้านค้า</div>
+                <div class="mt-2">Super Admin</div>
                 <hr />
 
                 <button class="btn btn-outline-light" @click="logout">Log Out</button>
@@ -17,15 +17,7 @@
           </div>
         </div>
         <div class="float-left" style="width: calc(100% - 300px); height: 100vh; overflow: scroll">
-          <child v-if="auth.restaurant_id" />
-          <div v-else>
-            <div class="m-4">
-              <card class="p-4">
-                ขออภัยคุณไม่สามารถใช้งานระบบได้ เนื่องจากข้อมูลร้านค้าใน account
-                นี้ยังไม่ถูกลงทะเบียน
-              </card>
-            </div>
-          </div>
+          <child />
         </div>
       </div>
     </div>
@@ -42,39 +34,15 @@ export default {
   data: () => ({
     menu: [
       {
-        header: true,
-        title: 'Loading...',
-        hiddenOnCollapse: true
-      },
-      {
-        href: '/admin',
+        href: '/superAdmin',
         title: 'Dashboard',
         icon: 'fas fa-home'
       },
-      {
-        href: '/admin/orders',
-        title: 'Orders',
-        icon: 'fas fa-clipboard-check'
-      },
-      {
-        href: '/admin/promotions',
-        title: 'Promotion',
-        icon: 'fas fa-ad'
-      },
 
       {
-        title: 'Food',
-        icon: 'fas fa-utensils',
-        child: [
-          {
-            href: '/admin/categories',
-            title: 'Category'
-          },
-          {
-            href: '/admin/foods',
-            title: 'Food List'
-          }
-        ]
+        href: '/superAdmin/sa_promotions',
+        title: 'Promotion',
+        icon: 'fas fa-ad'
       }
     ]
   }),
@@ -87,11 +55,7 @@ export default {
       this.$router.push({ name: 'login' })
     }
   },
-  created() {
-    if (this.auth.restaurant) {
-      this.menu[0].title = `ร้าน ${this.auth.restaurant.name}`
-    }
-  }
+  created() {}
 }
 </script>
 

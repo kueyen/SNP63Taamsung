@@ -66,6 +66,9 @@ class OrderController extends Controller
 
     public function update($id, Request $request)
     {
+
+
+
         $item = $this->mainModel::find($id);
 
         $update = $item->update($request->all());
