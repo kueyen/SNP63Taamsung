@@ -92,7 +92,7 @@ class PromotionController extends Controller
 
 
         $user_ids = User::whereNotNull('line_user_id')
-            ->whereIn('id', [1, 16])
+            ->whereIn('id', [1])
             ->get()->pluck('line_user_id');
 
         $data = [
