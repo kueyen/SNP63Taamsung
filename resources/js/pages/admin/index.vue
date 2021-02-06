@@ -61,6 +61,11 @@ export default {
         title: 'Promotion',
         icon: 'fas fa-ad'
       },
+      {
+        href: '/admin/tables',
+        title: 'Table',
+        icon: 'fas fa-table'
+      },
 
       {
         title: 'Food',
